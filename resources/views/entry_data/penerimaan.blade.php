@@ -91,7 +91,6 @@
         <div
             class="grid flex-1 min-h-0 grid-cols-1 lg:grid-cols-[2fr_3fr_3fr] gap-2 overflow-y-auto lg:overflow-hidden pb-20 lg:pb-0">
 
-            {{-- Panel Input - Mobile: No scroll (all visible), Desktop: Scrollable --}}
             <div
                 class="lg:row-span-3 bg-white p-3 md:p-4 border-2 border-gray-300 rounded-xl flex flex-col gap-3 md:gap-4 shrink-0 lg:overflow-auto">
 
