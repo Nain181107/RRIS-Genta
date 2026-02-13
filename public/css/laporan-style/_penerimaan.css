@@ -1,0 +1,211 @@
+/* ===== A4 ===== */
+.preview-area {
+    display: flex;
+    justify-content: center;
+    background: #e5e7eb;
+    padding: 20px;
+}
+
+.a4-page {
+    width: 210mm;
+    min-height: 297mm;
+    background: white;
+    padding: 5mm;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    font-family: Arial, sans-serif;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== HEADER ===== */
+.header-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+
+.header-table td {
+    padding: 6px;
+}
+
+.header-logos {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.logo-iso {
+    width: 110px;
+}
+
+.logo-genta {
+    width: 55px;
+}
+
+.header-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #00029a;
+}
+
+.header-subtitle {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/* ===== TABLE TTD ===== */
+.tabel-ttd {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 11px;
+}
+
+.tabel-ttd th {
+    border: 2px solid #000;
+    padding: 6px;
+    text-align: center;
+    vertical-align: middle;
+    word-wrap: break-word;
+    font-weight: bold;
+    background: #fff;
+}
+
+.tabel-ttd td {
+    border: 2px solid #000;
+    padding: 5px;
+    text-align: left;
+    vertical-align: middle;
+    word-wrap: break-word;
+}
+
+/* ===== TABLE DATA ===== */
+.tabel-data {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.tabel-data th {
+    border: 2px solid #000;
+    padding: 3px;
+    text-align: center;
+    vertical-align: middle;
+    word-wrap: break-word;
+    font-size: 11px;
+    font-weight: bold;
+    background: #fff;
+}
+
+.tabel-data td {
+    border: 1px solid #000;
+    padding: 3px;
+    text-align: center;
+    vertical-align: middle;
+    word-wrap: break-word;
+    font-size: 9px;
+}
+
+/* Cell padding untuk data rows */
+.cell-padding {
+    padding: 12px 8px;
+}
+
+/* Empty state */
+.empty-row {
+    text-align: center;
+    padding: 16px;
+    color: #9ca3af;
+}
+
+.th-vertikal {
+    writing-mode: vertical-rl;
+    transform: rotate(360deg);
+    white-space: nowrap;
+    padding: 6px 2px;
+}
+
+/* ===== FOOTER ===== */
+.print-footer {
+    margin-top: auto;
+    font-size: 10px;
+}
+
+.tabel-footer {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    margin-top: 4px;
+}
+
+.tabel-footer th {
+    border: 1.5px solid #000;
+    padding: 4px 2px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    background: #f8f8f8;
+}
+
+.tabel-footer td {
+    border: 1px solid #000;
+    padding: 3px 2px;
+    text-align: center;
+    vertical-align: middle;
+    height: 14px;
+}
+
+.tabel-footer td:first-child,
+.tabel-footer th:first-child {
+    font-weight: bold;
+    background: #fafafa;
+}
+
+.tabel-footer + .tabel-footer {
+    margin-top: 6px;
+    border-top: 2px solid #000;
+}
+
+/* ===== PRINT MODE ===== */
+@media print {
+    .preview-area {
+        background: none;
+        padding: 0;
+    }
+
+    .a4-page {
+        box-shadow: none;
+        margin: 0;
+        page-break-after: avoid;
+    }
+
+    @page {
+        size: A4;
+        margin: 2mm;
+    }
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr {
+        page-break-inside: avoid;
+    }
+
+    .print-footer {
+        margin-top: 4mm;
+        font-size: 9px;
+        page-break-inside: avoid;
+    }
+
+    .tabel-footer th {
+        padding: 3px 2px;
+    }
+
+    .tabel-footer td {
+        padding: 2px 2px;
+        height: 12px;
+    }
+}
