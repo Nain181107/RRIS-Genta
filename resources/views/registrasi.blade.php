@@ -58,7 +58,6 @@
                 class="space-y-5 lg:space-y-6" autocomplete="off">
                 @csrf
 
-                {{-- 2 Column Grid for Desktop --}}
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-6">
 
                     {{-- ID Karyawan --}}
@@ -168,7 +167,7 @@
                         @enderror
                     </div>
 
-                    {{-- Tanggal Lahir --}}
+                    {{-- Tanggal Lahir 
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">
                             Tanggal Lahir
@@ -189,29 +188,30 @@
                             </p>
                         @enderror
                     </div>
+                    --}}
 
-                    {{-- No HP --}}
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                            No. Handphone
-                        </label>
-                        <input type="tel" name="nohp" value="{{ old('nohp') }}" placeholder="08123456789"
-                            class="w-full h-11 sm:h-12 px-4 border-2 border-gray-300 rounded-xl text-sm sm:text-base
+                </div>
+
+                {{-- No HP --}}
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">
+                        No. Handphone
+                    </label>
+                    <input type="tel" name="nohp" value="{{ old('nohp') }}" placeholder="08123456789"
+                        class="w-full h-11 sm:h-12 px-4 border-2 border-gray-300 rounded-xl text-sm sm:text-base
                                    focus:outline-none focus:ring-2 focus:ring-(--blue) focus:border-(--blue) transition-all duration-200
                                    hover:border-gray-400">
-                        @error('nohp')
-                            <p class="text-red-600 text-xs sm:text-sm mt-1.5 flex items-center gap-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    class="w-4 h-4">
-                                    <path fill-rule="evenodd"
-                                        d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-8-5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0v-4.5A.75.75 0 0 1 10 5Zm0 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                {{ $message }}
-                            </p>
-                        @enderror
-                    </div>
-
+                    @error('nohp')
+                        <p class="text-red-600 text-xs sm:text-sm mt-1.5 flex items-center gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                class="w-4 h-4">
+                                <path fill-rule="evenodd"
+                                    d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-8-5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0v-4.5A.75.75 0 0 1 10 5Zm0 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
 
                 {{-- Password --}}

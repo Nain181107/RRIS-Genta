@@ -73,8 +73,8 @@
             min-width: 200px !important;
         }
 
-        /* ===== RESPONSIVE SIDEBAR (MOBILE) ===== */
-        @media (max-width: 768px) {
+        /* ===== RESPONSIVE SIDEBAR (MOBILE & TABLET) ===== */
+        @media (max-width: 1023px) {
 
             body,
             html {
@@ -162,7 +162,7 @@
             }
         }
 
-        @media (min-width: 769px) {
+        @media (min-width: 1024px) {
             .sidebar {
                 position: fixed;
                 left: 0;
@@ -393,18 +393,15 @@
                     <button onclick="toggleProfileMenu()"
                         class="profile-button w-full flex items-center gap-3 focus:outline-none hover:bg-gray-300 hover:cursor-pointer p-2 rounded-lg">
 
-                        @if (session('foto'))
-                            <div class="w-10 h-10 rounded-full overflow-hidden shrink-0 border border-gray-300">
-                                <img src="{{ asset('storage/' . session('foto')) }}"
-                                    class="w-full h-full object-cover block" alt="Foto Profil">
-                            </div>
-                        @else
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="var(--blue)" class="w-10 h-10 shrink-0">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                            </svg>
-                        @endif
+                        @php
+                            $nama = session('nama_karyawan', '');
+                            $kata = array_filter(explode(' ', $nama));
+                            $inisial = collect($kata)->take(2)->map(fn($k) => strtoupper($k[0]))->join('');
+                        @endphp
+
+                        <div class="w-12 h-12 rounded-full shrink-0 bg-(--blue) flex items-center justify-center">
+                            <span class="text-base font-bold text-white tracking-wide">{{ $inisial }}</span>
+                        </div>
 
                         <div class="profile-info text-left leading-tight flex-1">
                             <h3 class="sidebar-text text-sm font-semibold text-(--blue)">
@@ -417,19 +414,47 @@
                     </button>
 
                     <div id="profileMenu"
-                        class="hidden absolute bottom-full mb-2 left-0 right-0 bg-gray-100 border border-gray-400 rounded-xl shadow-xl z-50 p-2">
+                        class="hidden absolute bottom-full mb-3 left-0 right-0 bg-white border border-gray-400 rounded-2xl shadow-2xl z-50 overflow-hidden">
 
-                        <a href="/profil" class="block px-4 py-3 hover:bg-gray-300 rounded hover:cursor-pointer">
-                            Lihat Profil
-                        </a>
+                        <div class="p-1.5">
+                            <a href="/profil"
+                                class="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 rounded-xl transition-colors duration-150 group">
+                                {{-- User icon --}}
+                                <svg class="w-6 h-6 text-gray-400 group-hover:text-gray-600 transition-colors"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <circle cx="12" cy="8" r="4" />
+                                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                                </svg>
+                                <span
+                                    class="text-base font-medium text-gray-700 group-hover:text-gray-900 transition-colors">Lihat
+                                    Profil</span>
+                            </a>
+                        </div>
 
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit"
-                                class="w-full text-left px-4 py-3 hover:bg-gray-300 rounded hover:cursor-pointer">
-                                Logout
-                            </button>
-                        </form>
+                        <div class="h-px bg-gray-100 mx-3"></div>
+
+                        <div class="p-1.5">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit"
+                                    class="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-red-50 rounded-xl transition-colors duration-150 group">
+                                    {{-- Logout icon --}}
+                                    <svg class="w-6 h-6 text-red-400 group-hover:text-red-500 transition-colors"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                                        <polyline points="16 17 21 12 16 7" />
+                                        <line x1="21" y1="12" x2="9" y2="12" />
+                                    </svg>
+                                    <span
+                                        class="text-base font-medium text-red-500 group-hover:text-red-600 transition-colors">Logout</span>
+                                </button>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -450,7 +475,7 @@
                     </svg>
                 </button>
 
-                <div class="flex items-center gap-2 sm:gap-4 md:gap-8 flex-1 justify-center sm:justify-start">
+                <div class="flex items-center gap-2 sm:gap-4 md:gap-8 flex-1 justify-center lg:justify-start">
                     <div id="tanggalrealtime" class="text-xs sm:text-sm">-</div>
                     <div id="shiftactual" class="text-xs sm:text-sm">-</div>
                 </div>
@@ -497,7 +522,7 @@
 
     // Toggle sidebar - berbeda untuk desktop dan mobile
     function toggleSidebar() {
-        const isMobile = window.innerWidth <= 768;
+        const isMobile = window.innerWidth <= 1023;
 
         if (isMobile) {
             toggleMobileSidebar();
@@ -524,7 +549,7 @@
 
         menuLinks.forEach(link => {
             link.addEventListener('click', function(e) {
-                if (window.innerWidth <= 768) {
+                if (window.innerWidth <= 1023) {
                     setTimeout(() => {
                         if (sidebar.classList.contains('mobile-open')) {
                             toggleMobileSidebar();
@@ -537,13 +562,13 @@
 
     // Handle window resize
     window.addEventListener('resize', function() {
-        const isMobile = window.innerWidth <= 768;
+        const isMobile = window.innerWidth <= 1023;
 
         if (isMobile) {
             sidebar.classList.remove('collapsed');
         }
 
-        if (window.innerWidth > 768) {
+        if (window.innerWidth > 1023) {
             sidebar.classList.remove('mobile-open');
             overlay.classList.remove('active');
             document.body.style.overflow = '';
@@ -551,7 +576,7 @@
     });
 
     window.addEventListener('load', function() {
-        if (window.innerWidth <= 768) {
+        if (window.innerWidth <= 1023) {
             sidebar.classList.remove('collapsed');
         }
     });
@@ -562,7 +587,7 @@
         const parentBtn = document.querySelector(`.parent-btn[data-parent="${id}"]`);
         const isOpen = target.classList.contains('open');
 
-        if (window.innerWidth > 768 && sidebar.classList.contains('collapsed')) {
+        if (window.innerWidth > 1023 && sidebar.classList.contains('collapsed')) {
             return;
         }
 

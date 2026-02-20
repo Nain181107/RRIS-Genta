@@ -39,18 +39,10 @@ Route::middleware(['auth.karyawan'])->group(function () {
 
 Route::post('/api/rod-reject/filter', [DashboardController::class, 'filter']);
 
-Route::get('/laporan', function () {
-    return view('laporan');
-})
-    ->middleware('auth.karyawan');
-Route::post('/laporan/preview', [LaporanController::class, 'preview'])
-    ->name('laporan.preview');
+Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index')->middleware('auth.karyawan');
 
-Route::get('/laporan/pdf', [LaporanController::class, 'pdf'])
-    ->name('laporan.pdf');
+Route::post('/laporan/preview-pdf', [LaporanController::class, 'previewPDF'])->name('laporan.preview')->middleware('auth.karyawan');
 
-
-//entry data
 //penerimaan
 Route::get('/penerimaan', [PenerimaanController::class, 'index'])->name('penerimaan.index')
     ->middleware('auth.karyawan');
@@ -119,8 +111,7 @@ Route::post('/penerimaan/edit/update', [PenerimaanController::class, 'update'])-
 Route::delete('/identitas-rod/{id}', [IdentitasRodController::class, 'destroy'])->name('identitas-rod.destroy')
     ->middleware('auth.karyawan');
 
-
-
+//edit perbaikan
 Route::get('/editperbaikan', [PerbaikanController::class, 'indexEdit'])->name('editperbaikan.indexEdit')
     ->middleware('auth.karyawan');
 
@@ -134,8 +125,8 @@ Route::post('/perbaikan/edit/update', [PerbaikanController::class, 'update'])->n
     ->middleware('auth.karyawan');
 
 
-
 //history data
+//history penerimaan
 Route::get('/historypenerimaan', [PenerimaanController::class, 'indexHistory'])->name('historypenerimaan.indexHistory')
     ->middleware('auth.karyawan');
 
@@ -161,7 +152,7 @@ Route::get('/penerimaan/{id}/data-sekarang', [PenerimaanController::class, 'data
     ->middleware('auth.karyawan');
 
 
-
+//history perbaikan
 Route::get('/historyperbaikan', [PerbaikanController::class, 'indexHistory'])->name('historyperbaikan.indexHistory')
     ->middleware('auth.karyawan');
 
@@ -187,8 +178,7 @@ Route::get('/perbaikan/{id}/data-sekarang', [PerbaikanController::class, 'dataSe
     ->middleware('auth.karyawan');
 
 
-
-
+//history pengiriman
 Route::get('/historypengiriman', [PengirimanController::class, 'indexHistory'])->name('historypengiriman.indexHistory')
     ->middleware('auth.karyawan');
 
@@ -205,7 +195,7 @@ Route::get('/history/pengiriman/export', [PengirimanController::class, 'export']
 
 Route::get('/notifikasi', function () {
     return view('under-development');
-});
+})->middleware('auth.karyawan');
 
 Route::get('/profil', function () {
     return view('profil');

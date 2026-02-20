@@ -15,7 +15,8 @@
     {{-- Header --}}
     <header class="bg-white shadow-sm sticky top-0 z-10">
         <div class="h-14 md:h-16 flex items-center gap-3 px-3 md:px-6">
-            <a href="{{ route('dashboard') }}" class="p-2 rounded-full hover:bg-gray-100 active:bg-gray-200 transition">
+            <a href="javascript:history.back()"
+                class="p-2 rounded-full hover:bg-gray-100 active:bg-gray-200 transition">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                     stroke="currentColor" class="w-5 h-5 md:w-6 md:h-6 text-gray-700">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
@@ -40,22 +41,27 @@
 
             {{-- Profile Picture --}}
             <div class="absolute left-1/2 transform -translate-x-1/2 -bottom-12 sm:-bottom-16 md:-bottom-20">
-                @if (session('foto'))
-                    <div
-                        class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white shadow-lg bg-white">
-                        <img src="{{ asset('storage/' . session('foto')) }}" class="w-full h-full object-cover"
-                            alt="Foto Profil">
-                    </div>
-                @else
-                    <div
-                        class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full bg-gray-200 border-4 border-white shadow-lg flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 text-gray-400">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                        </svg>
-                    </div>
-                @endif
+                @php
+                    $foto = session('foto');
+                    $nama = session('nama_karyawan', '');
+                    $inisial = collect(array_filter(explode(' ', $nama)))
+                        ->take(2)
+                        ->map(fn($k) => strtoupper($k[0]))
+                        ->join('');
+                @endphp
+
+                <div
+                    class="w-30 h-30 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                    @if ($foto)
+                        <img src="{{ asset('storage/' . $foto) }}" class="w-full h-full object-cover" alt="Foto Profil">
+                    @else
+                        <div class="w-full h-full bg-(--blue) flex items-center justify-center">
+                            <span class="text-xl sm:text-2xl md:text-5xl font-bold text-white tracking-wide">
+                                {{ $inisial }}
+                            </span>
+                        </div>
+                    @endif
+                </div>
             </div>
         </div>
 
@@ -100,14 +106,15 @@
                             </span>
                         </div>
 
-                        {{-- Tanggal Lahir --}}
+                        {{-- Tanggal Lahir
                         <div
                             class="flex flex-col sm:flex-row sm:justify-between sm:items-center px-4 py-3 sm:px-6 sm:py-4 gap-1 sm:gap-0">
                             <span class="text-sm sm:text-base text-gray-600 font-medium">Tanggal Lahir</span>
                             <span class="text-sm sm:text-base font-semibold text-gray-800">
                                 {{ session('tgl_lahir') ? \Carbon\Carbon::parse(session('tgl_lahir'))->format('d M Y') : '-' }}
                             </span>
-                        </div>
+                        </div> 
+                        --}}
 
                         {{-- No HP --}}
                         <div
@@ -195,7 +202,7 @@
                     @enderror
                 </div>
 
-                {{-- Tanggal Lahir --}}
+                {{-- Tanggal Lahir
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1.5">
                         Tanggal Lahir
@@ -206,7 +213,8 @@
                     @error('tgl_lahir')
                         <p class="text-red-600 text-xs sm:text-sm mt-1.5">{{ $message }}</p>
                     @enderror
-                </div>
+                </div> 
+                --}}
 
                 {{-- No HP --}}
                 <div>

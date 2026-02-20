@@ -44,9 +44,8 @@
                                 <div class="flex flex-col gap-1">
                                     <label class="text-xs font-medium text-gray-600">Jenis Laporan</label>
                                     <select id="jenisLaporan" name="jenisLaporan"
-                                        class="h-10 w-full rounded-lg border border-gray-400 bg-white px-3 text-sm text-gray-800 shadow-sm transition-all duration-200
+                                        class="h-10 w-full rounded-lg border border-gray-400 bg-white px-3 text-xs lg:text-sm md:text-sm text-gray-800 shadow-sm transition-all duration-200
                                         hover:border-gray-500 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 focus:outline-none">
-                                        <option value="" selected>Pilih Jenis Laporan</option>
                                         <option value="penerimaan">Penerimaan</option>
                                         <option value="perbaikan">Perbaikan</option>
                                         <option value="pengiriman">Pengiriman</option>
@@ -58,14 +57,15 @@
                                 <div class="flex flex-col gap-1">
                                     <label class="text-xs font-medium text-gray-600">Tanggal</label>
                                     <input type="date" name="tanggal" id="tanggal"
-                                        class="h-10 w-full rounded-lg border border-gray-400 bg-white px-3 text-sm text-gray-700 shadow-sm transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 focus:outline-none hover:border-gray-500">
+                                        value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}"
+                                        class="h-10 w-full rounded-lg border border-gray-400 bg-white px-3 text-xs lg:text-sm md:text-sm text-gray-700 shadow-sm transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 focus:outline-none hover:border-gray-500">
                                 </div>
 
                                 {{-- Shift --}}
                                 <div class="flex flex-col gap-1">
                                     <label class="text-xs font-medium text-gray-600">Shift</label>
                                     <select name="shift" id="shift"
-                                        class="h-10 w-full rounded-lg border border-gray-400 bg-white px-3 text-sm text-gray-800 shadow-sm transition-all duration-200
+                                        class="h-10 w-full rounded-lg border border-gray-400 bg-white px-3 text-xs lg:text-sm md:text-sm text-gray-800 shadow-sm transition-all duration-200
                                         hover:border-gray-500 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 focus:outline-none">
                                         <option value="" selected>Semua Shift</option>
                                         <option value="1">Shift 1</option>
@@ -78,7 +78,7 @@
                                 <div class="flex flex-col gap-1">
                                     <label class="text-xs font-medium text-gray-600">Tim</label>
                                     <select name="tim" id="tim"
-                                        class="h-10 w-full rounded-lg border border-gray-400 bg-white px-3 text-sm text-gray-800 shadow-sm 
+                                        class="h-10 w-full rounded-lg border border-gray-400 bg-white px-3 text-xs lg:text-sm md:text-sm text-gray-800 shadow-sm 
                                         transition-all duration-200 hover:border-gray-500 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 focus:outline-none">
                                         <option value="" selected>Semua Tim</option>
                                         <option value="A">Tim A</option>
@@ -96,14 +96,7 @@
                             <div class="flex flex-wrap items-center gap-2 mt-3 pt-3 border-t border-gray-300 justify-end">
                                 <button type="button" id="btnCetak"
                                     class="h-10 px-4 md:px-5 bg-(--blue) text-white text-xs md:text-sm font-semibold rounded-lg hover:opacity-90 active:opacity-80 transition shadow-sm">
-                                    <span class="hidden sm:inline">Preview Data</span>
-                                    <span class="sm:hidden">Preview</span>
-                                </button>
-
-                                <button type="button" onclick="printLaporan()"
-                                    class="h-10 px-4 md:px-5 bg-green-600 text-white text-xs md:text-sm font-semibold rounded-lg hover:bg-green-700 active:bg-green-800 transition shadow-sm">
-                                    <span class="hidden sm:inline">Print / PDF</span>
-                                    <span class="sm:hidden">Print</span>
+                                    <span class="sm:inline">Preview Data</span>
                                 </button>
 
                                 <button type="reset"
@@ -118,21 +111,18 @@
                 </form>
 
                 {{-- Area Preview - ALWAYS VISIBLE --}}
-                <div id="areaPrint" class="flex-1 min-h-0 bg-gray-100 overflow-auto rounded-lg border-2 border-gray-300">
-                    <div class="p-3 md:p-4">
-                        <div id="previewWrapper" class="flex justify-center">
-                            <div id="hasilCetak" class="w-full max-w-4xl bg-white shadow-lg rounded-lg p-4 md:p-6 min-h-50">
-                                {{-- Preview Content --}}
-                                <div class="flex flex-col items-center justify-center py-12 text-gray-400">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="w-16 h-16 mb-4">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-                                    </svg>
-                                    <p class="text-sm md:text-base font-medium text-center">Pilih filter dan klik "Preview
-                                        Data" untuk melihat laporan</p>
-                                </div>
-                            </div>
+                <div id="previewWrapper" class="h-full">
+                    <div id="hasilCetak"
+                        class="w-full h-full border-2 border-gray-300 bg-white shadow-lg rounded-lg p-2 md:p-1 min-h-50">
+                        {{-- Preview Content --}}
+                        <div class="flex flex-col items-center justify-center py-12 text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-16 h-16 mb-4">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                            </svg>
+                            <p class="text-sm md:text-base font-medium text-center">Pilih filter dan klik "Preview
+                                Data" untuk melihat laporan</p>
                         </div>
                     </div>
                 </div>
@@ -173,68 +163,108 @@
         }
     </style>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const toggleBtn = document.getElementById('toggleFilterBtn');
-            const filterContainer = document.getElementById('filterContainer');
-            const filterIcon = document.getElementById('filterIcon');
-            const btn = document.getElementById('btnCetak');
+        // Ambil CSRF Token
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
-            if (toggleBtn && filterContainer) {
-                toggleBtn.addEventListener('click', function() {
-                    filterContainer.classList.toggle('hidden');
-                    filterIcon.classList.toggle('rotate-180');
-                });
-            }
+        // Event listener untuk tombol Preview Data
+        document.getElementById('btnCetak').addEventListener('click', function() {
+            // Validasi: Jenis Laporan harus dipilih
+            const jenisLaporan = document.getElementById('jenisLaporan').value;
 
-            if (!btn) {
-                console.log('btnCetak tidak ditemukan');
+            if (!jenisLaporan) {
+                alert('Silakan pilih Jenis Laporan terlebih dahulu!');
                 return;
             }
 
-            btn.addEventListener('click', function() {
+            // Ambil data dari form
+            const formData = new FormData(document.getElementById('formCetak'));
 
-                let jenis = document.getElementById('jenisLaporan').value;
+            // Tampilkan loading indicator
+            document.getElementById('hasilCetak').innerHTML = `
+                <div class="flex flex-col items-center justify-center py-12">
+                    <svg class="animate-spin h-12 w-12 text-(--blue) mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <p class="text-gray-600">Sedang memuat preview...</p>
+                </div>
+            `;
 
-                if (!jenis) {
-                    alert('Pilih jenis laporan dulu');
-                    return;
-                }
+            // Kirim request ke server
+            fetch('/laporan/preview-pdf', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Gagal memuat preview');
+                    }
 
-                let formData = new FormData(document.getElementById('formCetak'));
-                formData.append('jenis', jenis);
+                    const jumlah = response.headers.get('X-Jumlah-Data');
+                    if (jumlah !== null) {
+                        document.getElementById('jumlahData').textContent = jumlah;
+                    }
 
-                fetch("{{ route('laporan.preview') }}", {
-                        method: "POST",
-                        headers: {
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        },
-                        body: formData
-                    })
-                    .then(res => res.text())
-                    .then(html => {
-                        document.getElementById('hasilCetak').innerHTML = html;
-                    })
-                    .catch(err => {
-                        console.log(err);
-                        alert('Preview gagal. Cek console.');
-                    });
+                    return response.blob();
+                })
+                .then(blob => {
+                    // Buat URL temporary untuk PDF
+                    const pdfUrl = URL.createObjectURL(blob);
 
-            });
+                    // Tampilkan PDF di iframe
+                    document.getElementById('hasilCetak').innerHTML = `
+                    <iframe 
+                        src="${pdfUrl}" 
+                        class="w-full h-full min-h-[600px] border-0 rounded"
+                        id="pdfViewer">
+                    </iframe>
+                `;
 
+                    // Update jumlah data (opsional, bisa diambil dari response)
+                    // document.getElementById('jumlahData').textContent = '...';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('hasilCetak').innerHTML = `
+                    <div class="flex flex-col items-center justify-center py-12 text-red-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16 mb-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                        </svg>
+                        <p class="font-medium">Gagal memuat preview</p>
+                        <p class="text-sm text-gray-500">Silakan coba lagi</p>
+                    </div>
+                `;
+                });
         });
 
-        function printLaporan() {
+        // Event listener untuk tombol Reset
+        document.querySelector('button[type="reset"]').addEventListener('click', function() {
+            // Reset preview area ke default
+            document.getElementById('hasilCetak').innerHTML = `
+                <div class="flex flex-col items-center justify-center py-12 text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor" class="w-16 h-16 mb-4">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                    </svg>
+                    <p class="text-sm md:text-base font-medium text-center">Pilih filter dan klik "Preview Data" untuk melihat laporan</p>
+                </div>
+            `;
 
-            const form = document.getElementById('formCetak');
-            const formData = new FormData(form);
+            // Reset jumlah data
+            document.getElementById('jumlahData').textContent = '0';
+        });
 
-            const tanggal = formData.get('tanggal');
-            const shift = formData.get('shift');
-            const tim = formData.get('tim');
+        // Toggle filter untuk mobile
+        document.getElementById('toggleFilterBtn')?.addEventListener('click', function() {
+            const filterContainer = document.getElementById('filterContainer');
+            const filterIcon = document.getElementById('filterIcon');
 
-            let url = `/laporan/pdf?tanggal=${tanggal}&shift=${shift}&tim=${tim}`;
-
-            window.location.href = url;
-        }
+            filterContainer.classList.toggle('hidden');
+            filterIcon.classList.toggle('rotate-180');
+        });
     </script>
 @endpush

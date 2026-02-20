@@ -13,7 +13,7 @@
 
     <div class="flex flex-col items-center text-center px-6">
 
-        <div class="w-20 h-20 rounded-full bg-red-900 flex items-center justify-center mb-6">
+        <div class="w-20 h-20 rounded-full bg-(--blue) flex items-center justify-center mb-6">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="white"
                 class="w-10 h-10">
                 <path stroke-linecap="round" stroke-linejoin="round"

@@ -219,7 +219,7 @@
 
     {{-- Modal Form --}}
     <div id="modalForm"
-        class="fixed inset-0 bg-black/30 backdrop-blur-sm hidden z-50 transition-opacity duration-300 px-4 sm:px-6 lg:px-10">
+        class="fixed inset-0 bg-black/30 backdrop-blur-sm hidden z-1050 transition-opacity duration-300 px-4 sm:px-6 lg:px-10">
 
         <div id="modalBox"
             class="bg-white max-w-full md:max-w-5xl lg:max-w-6xl w-full max-h-[90vh] rounded-xl shadow-lg p-4 md:p-5 transform scale-95 opacity-0 transition-all duration-300 flex flex-col gap-3 md:gap-4 overflow-hidden">

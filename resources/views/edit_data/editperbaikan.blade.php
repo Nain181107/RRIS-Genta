@@ -428,33 +428,37 @@
 
                     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 lg:gap-0">
 
-                        <div class="flex items-center gap-2">
-                            <button id="eper_openKamera" type="button" disabled
-                                class="flex-1 lg:flex-none lg:w-12 lg:h-12 md:lg:w-15 md:lg:h-15 bg-white p-3 border-2 border-gray-300 rounded-xl flex items-center justify-center gap-2 lg:gap-0 hover:bg-gray-100 transition">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="var(--blue)" class="w-5 h-5 md:w-6 md:h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z" />
-                                </svg>
-                                <span class="lg:hidden text-xs font-medium">Kamera</span>
-                            </button>
+                        <div class="flex gap-2 justify-start ">
 
-                            <button id="eper_openFile" type="button" disabled
-                                class="flex-1 lg:flex-none lg:w-12 lg:h-12 md:lg:w-15 md:lg:h-15 bg-white p-3 border-2 border-gray-300 rounded-xl flex items-center justify-center gap-2 lg:gap-0 hover:bg-gray-100 transition">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="var(--blue)" class="w-5 h-5 md:w-6 md:h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 0 0-1.883 2.542l.857 6a2.25 2.25 0 0 0 2.227 1.932H19.05a2.25 2.25 0 0 0 2.227-1.932l.857-6a2.25 2.25 0 0 0-1.883-2.542m-16.5 0V6A2.25 2.25 0 0 1 6 3.75h3.879a1.5 1.5 0 0 1 1.06.44l2.122 2.12a1.5 1.5 0 0 0 1.06.44H18A2.25 2.25 0 0 1 20.25 9v.776" />
-                                </svg>
-                                <span class="lg:hidden text-xs font-medium">File</span>
-                            </button>
+                            <div class="flex justify-between gap-2">
+                                <button id="eper_openKamera" type="button" disabled
+                                    class="flex-1 lg:flex-none lg:w-12 lg:h-12 md:lg:w-15 md:lg:h-15 bg-white p-3 border-2 border-gray-300 rounded-xl flex items-center justify-center gap-2 lg:gap-0 hover:bg-gray-100 transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="var(--blue)" class="w-5 h-5 md:w-6 md:h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z" />
+                                    </svg>
+                                    <span class="lg:hidden text-xs font-medium">Kamera</span>
+                                </button>
+
+                                <button id="eper_openFile" type="button" disabled
+                                    class="flex-1 lg:flex-none lg:w-12 lg:h-12 md:lg:w-15 md:lg:h-15 bg-white p-3 border-2 border-gray-300 rounded-xl flex items-center justify-center gap-2 lg:gap-0 hover:bg-gray-100 transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="var(--blue)" class="w-5 h-5 md:w-6 md:h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 0 0-1.883 2.542l.857 6a2.25 2.25 0 0 0 2.227 1.932H19.05a2.25 2.25 0 0 0 2.227-1.932l.857-6a2.25 2.25 0 0 0-1.883-2.542m-16.5 0V6A2.25 2.25 0 0 1 6 3.75h3.879a1.5 1.5 0 0 1 1.06.44l2.122 2.12a1.5 1.5 0 0 0 1.06.44H18A2.25 2.25 0 0 1 20.25 9v.776" />
+                                    </svg>
+                                    <span class="lg:hidden text-xs font-medium">File</span>
+                                </button>
+                            </div>
 
                             <div id="fileInfo"
-                                class="hidden items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg bg-white">
+                                class="hidden items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg bg-white flex">
                                 <a id="fileLink" href="#" target="_blank"
-                                    class="text-xs md:text-sm text-(--blue) underline max-w-32 md:max-w-37.5 truncate">
+                                    class="text-xs md:text-sm text-(--blue) underline truncate block max-w-25 sm:max-w-40 md:max-w-45 lg:max-w-50 "
+                                    title="">
                                 </a>
                                 <button type="button" id="removeFile"
                                     class="text-red-500 hover:text-red-700 font-bold text-sm">
@@ -515,11 +519,12 @@
                 </div>
             </div>
         </div>
-    @endsection
+    </div>
+@endsection
 
-    @push('scripts')
-        @vite(['resources/js/editperbaikan.js'])
-        <script>
-            window.authKaryawanId = {{ session('karyawan_id') }};
-        </script>
-    @endpush
+@push('scripts')
+    @vite(['resources/js/editperbaikan.js'])
+    <script>
+        window.authKaryawanId = {{ session('karyawan_id') }};
+    </script>
+@endpush

@@ -272,7 +272,7 @@ class PengirimanController extends Controller
 
         DB::transaction(function () use ($rods, $request) {
 
-            foreach ($rods as $nomorRod) {
+            foreach ($rods->values() as $index => $nomorRod) {
 
                 $rod = IdentitasRod::where('nomor_rod', $nomorRod)
                     ->where('status', 'Diperbaiki')
@@ -290,9 +290,11 @@ class PengirimanController extends Controller
                     throw new \Exception("Data perbaikan untuk ROD $nomorRod tidak ditemukan.");
                 }
 
+                $tanggal = \Carbon\Carbon::parse($request->master_datetime)->addSeconds($index);
+
                 Pengiriman::create([
                     'perbaikan_id' => $perbaikan->id,
-                    'tanggal_pengiriman' => $request->master_datetime,
+                    'tanggal_pengiriman' => $tanggal,
                     'shift' => $request->master_shift,
                     'id_karyawan' => Session::get('karyawan_id'),
                     'tim' => Session::get('tim'),

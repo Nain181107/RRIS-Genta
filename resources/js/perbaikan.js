@@ -66,7 +66,7 @@ function pilihData(data) {
     document.querySelector('[name="s"]').value = data.s;
     document.querySelector('[name="d"]').value = data.d;
     document.querySelector('[name="b"]').value = data.b;
-    document.querySelector('[name="bac"]').value = data.ba;
+    document.querySelector('[name="nba"]').value = data.ba;
     document.querySelector('[name="r"]').value = data.r;
     document.querySelector('[name="m"]').value = data.m;
     document.querySelector('[name="cr"]').value = data.cr;

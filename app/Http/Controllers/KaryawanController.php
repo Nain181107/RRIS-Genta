@@ -112,7 +112,7 @@ class KaryawanController extends Controller
 
         Session::put('nama_karyawan', $data['nama_lengkap']);
         Session::put('tim', $data['tim']);
-        Session::put('tgl_lahir', $data['tgl_lahir']);
+        //Session::put('tgl_lahir', $data['tgl_lahir']);
         Session::put('nohp', $data['nohp']);
 
         if (isset($data['jabatan'])) {
